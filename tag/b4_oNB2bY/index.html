@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>Gamification | Plbear | Cuz Penguin QQ</title>
+<title>sql | Plbear | Cuz Penguin QQ</title>
 <meta name="description" content="Food And Freedom. Make my own world a better place.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -13,12 +13,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
 <link rel="stylesheet" href="https://www.plbear.com/styles/main.css">
 
-
-  
-    <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css" />
-  
-
-  
 
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -144,43 +138,28 @@
 
       <div class="main-container">
         <div class="content-container" data-aos="fade-up">
-          <div class="post-detail">
-            <h2 class="post-title">Gamification</h2>
-            <div class="post-date">2019-07-20</div>
-            
-            <div class="post-content">
-              <iframe width="100%" height="600px"  frameborder="0" scrolling="no" src="https://liveshare.huya.com/iframe/plbear"></iframe>
-
-            </div>
-            
-              <div class="tag-container">
-                
-                  <a href="https://www.plbear.com/tag/gamification" class="tag">
-                    游戏化思维
-                  </a>
-                
-              </div>
-            
-            
-              <div class="next-post">
-                <div class="next">下一篇</div>
-                <a href="https://www.plbear.com/post/about">
-                  <h3 class="post-title">
-                    Hello World
-                  </h3>
+          <h2 class="current-tag">标签: sql</h2>
+          
+            <article class="post-item">
+              <div class="left">
+                <a href="https://www.plbear.com/post/mycat">
+                  <h2 class="post-title">微服务架构基于Mycat分库分表及读写分离的配置实战</h2>
                 </a>
+                <div class="post-date">
+                  2019-08-01
+                </div>
+                <div class="post-abstract">
+                  
+                </div>
               </div>
-            
-
-            
               
-                <div id="gitalk-container" data-aos="fade-in"></div>
-              
+            </article>
+          
 
-              
-            
-
-          </div>
+          <div class="pagination-container">
+  
+  
+</div>
 
         </div>
       </div>
@@ -202,29 +181,6 @@ var app = new Vue({
 })
 
 </script>
-
-
-
-  
-    <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
-    <script>
-
-      var gitalk = new Gitalk({
-        clientID: '39652c8415a40c6bf5aa',
-        clientSecret: '0b7befba5be1a2e590d3d191ddc9d75234f319d6',
-        repo: 'iyabao.github.io',
-        owner: 'IYABAO',
-        admin: ['IYABAO'],
-        id: (location.pathname).substring(0, 49),      // Ensure uniqueness and length less than 50
-        distractionFreeMode: false  // Facebook-like distraction free mode
-      })
-
-      gitalk.render('gitalk-container')
-
-    </script>
-  
-
-  
 
 
 
