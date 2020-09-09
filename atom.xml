@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://i.plbear.com</id>
     <title>Plbear | Cuz Penguin QQ</title>
-    <updated>2020-09-04T07:20:49.290Z</updated>
+    <updated>2020-09-09T06:50:20.923Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://i.plbear.com"/>
     <link rel="self" href="https://i.plbear.com/atom.xml"/>
@@ -10,6 +10,742 @@
     <logo>https://i.plbear.com/images/avatar.png</logo>
     <icon>https://i.plbear.com/favicon.ico</icon>
     <rights>All rights reserved 2020, Plbear | Cuz Penguin QQ</rights>
+    <entry>
+        <title type="html"><![CDATA[ES索引的增删改查]]></title>
+        <id>https://i.plbear.com/post/es-suo-yin-de-zeng-shan-gai-cha</id>
+        <link href="https://i.plbear.com/post/es-suo-yin-de-zeng-shan-gai-cha">
+        </link>
+        <updated>2020-09-08T15:08:32.000Z</updated>
+        <content type="html"><![CDATA[<p>索引的增删改查</p>
+<p>标准的restful接口</p>
+<p>查</p>
+<p>查看所有index, 等价于show tables;</p>
+<p>GET _cat/indices</p>
+<p>GET test_index</p>
+<p>GET kibana_sample_data_logs?include_type_name=true&amp;include_defaults=true</p>
+<p>aliases</p>
+<p>mappings</p>
+<p>settings</p>
+<p>删</p>
+<p>DELETE test_index</p>
+<p>DELETE test_index?ignore_unavailable=true  ==&gt; drop table xx  if exists</p>
+<p>增</p>
+<p>PUT kibana_sample_data_ecommerce2?include_type_name=true<br>
+{<br>
+&quot;mappings&quot; : {<br>
+&quot;_doc&quot; : {<br>
+&quot;properties&quot; : {<br>
+&quot;@timestamp&quot; : {<br>
+&quot;type&quot; : &quot;alias&quot;,<br>
+&quot;path&quot; : &quot;timestamp&quot;<br>
+},<br>
+&quot;agent&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;bytes&quot; : {<br>
+&quot;type&quot; : &quot;long&quot;<br>
+},<br>
+&quot;clientip&quot; : {<br>
+&quot;type&quot; : &quot;ip&quot;<br>
+},<br>
+&quot;event&quot; : {<br>
+&quot;properties&quot; : {<br>
+&quot;dataset&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;<br>
+}<br>
+}<br>
+},<br>
+&quot;extension&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;geo&quot; : {<br>
+&quot;properties&quot; : {<br>
+&quot;coordinates&quot; : {<br>
+&quot;type&quot; : &quot;geo_point&quot;<br>
+},<br>
+&quot;dest&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;<br>
+},<br>
+&quot;src&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;<br>
+},<br>
+&quot;srcdest&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;<br>
+}<br>
+}<br>
+},<br>
+&quot;host&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;index&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;ip&quot; : {<br>
+&quot;type&quot; : &quot;ip&quot;<br>
+},<br>
+&quot;machine&quot; : {<br>
+&quot;properties&quot; : {<br>
+&quot;os&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;ram&quot; : {<br>
+&quot;type&quot; : &quot;long&quot;<br>
+}<br>
+}<br>
+},<br>
+&quot;memory&quot; : {<br>
+&quot;type&quot; : &quot;double&quot;<br>
+},<br>
+&quot;message&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;phpmemory&quot; : {<br>
+&quot;type&quot; : &quot;long&quot;<br>
+},<br>
+&quot;referer&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;<br>
+},<br>
+&quot;request&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;response&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;tags&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;timestamp&quot; : {<br>
+&quot;type&quot; : &quot;date&quot;<br>
+},<br>
+&quot;url&quot; : {<br>
+&quot;type&quot; : &quot;text&quot;,<br>
+&quot;fields&quot; : {<br>
+&quot;keyword&quot; : {<br>
+&quot;type&quot; : &quot;keyword&quot;,<br>
+&quot;ignore_above&quot; : 256<br>
+}<br>
+}<br>
+},<br>
+&quot;utc_time&quot; : {<br>
+&quot;type&quot; : &quot;date&quot;<br>
+}<br>
+}<br>
+}<br>
+},<br>
+&quot;settings&quot; : {<br>
+&quot;index&quot; : {<br>
+&quot;number_of_shards&quot; : &quot;1&quot;,<br>
+&quot;auto_expand_replicas&quot; : &quot;0-1&quot;,<br>
+&quot;number_of_replicas&quot; : &quot;1&quot;<br>
+}<br>
+}<br>
+}</p>
+<p>改 reindex</p>
+<p>POST _reindex?wait_for_completion=true<br>
+{<br>
+&quot;dest&quot;: {<br>
+&quot;index&quot;: &quot;kibana_sample_data_ecommerce2&quot;<br>
+},<br>
+&quot;source&quot;: {<br>
+&quot;index&quot;: &quot;kibana_sample_data_ecommerce&quot;<br>
+}<br>
+}</p>
+<p>POST _aliases<br>
+{<br>
+&quot;actions&quot;: [<br>
+{<br>
+&quot;add&quot;: {<br>
+&quot;index&quot;: &quot;kibana_sample_data_ecommerce2&quot;,<br>
+&quot;alias&quot;: &quot;ecommerce&quot;<br>
+}<br>
+},<br>
+{<br>
+&quot;remove&quot;: {<br>
+&quot;index&quot;: &quot;kibana_sample_data_ecommerce&quot;,<br>
+&quot;alias&quot;: &quot;ecommerce&quot;<br>
+}<br>
+}<br>
+]<br>
+}</p>
+<p>mapping</p>
+<p>POST kibana_sample_data_ecommerce2/_mapping<br>
+{</p>
+<pre><code>&quot;properties&quot;: {
+  &quot;agent&quot;: {
+    &quot;type&quot;: &quot;text&quot;,
+    &quot;fields&quot;: {
+      &quot;keyword&quot;: {
+        &quot;type&quot;: &quot;keyword&quot;,
+        &quot;ignore_above&quot;: 256
+      },
+      &quot;hello&quot;:{
+        &quot;type&quot;:&quot;keyword&quot;,
+        &quot;ignore_above&quot;: 1
+      }
+    }
+  }
+}
+</code></pre>
+<p>}</p>
+<p>settings</p>
+<p>PUT kibana_sample_data_ecommerce2/_settings<br>
+{</p>
+<pre><code>&quot;index&quot;: {
+  &quot;auto_expand_replicas&quot;: &quot;0-1&quot;,
+  &quot;number_of_replicas&quot;: &quot;2&quot;
+}
+</code></pre>
+<p>}</p>
+<p>直接 ==&gt; 插入数据，</p>
+<p>让他动态索引（dynamic mapping）得到mapping，在此基础上更改。</p>
+<p>字段类型</p>
+<h2 id="field-data-types">Field data types</h2>
+<p>Elasticsearch supports a number of different data types for the fields in a document:</p>
+<h3 id="core-data-types">Core data types</h3>
+<ul>
+<li>
+<p>string</p>
+<p><a href="text.html"><code>text</code></a>, <a href="keyword.html"><code>keyword</code></a> and <a href="wildcard.html"><code>wildcard</code></a></p>
+</li>
+<li>
+<p><a href="number.html">Numeric</a></p>
+<p><code>long</code>, <code>integer</code>, <code>short</code>, <code>byte</code>, <code>double</code>, <code>float</code>, <code>half_float</code>, <code>scaled_float</code></p>
+</li>
+<li>
+<p><a href="date.html">Date</a></p>
+<p><code>date</code></p>
+</li>
+<li>
+<p><a href="date_nanos.html">Date nanoseconds</a></p>
+<p><code>date_nanos</code></p>
+</li>
+<li>
+<p><a href="boolean.html">Boolean</a></p>
+<p><code>boolean</code></p>
+</li>
+<li>
+<p><a href="binary.html">Binary</a></p>
+<p><code>binary</code></p>
+</li>
+<li>
+<p><a href="range.html">Range</a></p>
+<p><code>integer_range</code>, <code>float_range</code>, <code>long_range</code>, <code>double_range</code>, <code>date_range</code>, <code>ip_range</code></p>
+</li>
+</ul>
+<h3 id="complex-data-types">Complex data types</h3>
+<ul>
+<li>
+<p><a href="object.html">Object</a></p>
+<p><code>object</code> for single JSON objects</p>
+</li>
+<li>
+<p><a href="nested.html">Nested</a></p>
+<p><code>nested</code> for arrays of JSON objects</p>
+</li>
+</ul>
+<h3 id="spatial-data-types">Spatial data types</h3>
+<ul>
+<li>
+<p><a href="geo-point.html">Geo-point</a></p>
+<p><code>geo_point</code> for lat/lon points</p>
+</li>
+<li>
+<p><a href="geo-shape.html">Geo-shape</a></p>
+<p><code>geo_shape</code> for complex shapes like polygons</p>
+</li>
+<li>
+<p><a href="point.html">Point</a></p>
+<p><code>point</code> for arbitrary cartesian points.</p>
+</li>
+<li>
+<p><a href="shape.html">Shape</a></p>
+<p><code>shape</code> for arbitrary cartesian geometries.</p>
+</li>
+</ul>
+<h3 id="specialised-data-types">Specialised data types</h3>
+<ul>
+<li>
+<p><a href="ip.html">IP</a></p>
+<p><code>ip</code> for IPv4 and IPv6 addresses</p>
+</li>
+<li>
+<p><a href="search-suggesters.html#completion-suggester">Completion data type</a></p>
+<p><code>completion</code> to provide auto-complete suggestions</p>
+</li>
+<li>
+<p><a href="token-count.html">Token count</a></p>
+<p><code>token_count</code> to count the number of tokens in a string</p>
+</li>
+<li>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/7.9/mapper-murmur3.html"><code>mapper-murmur3</code></a></p>
+<p><code>murmur3</code> to compute hashes of values at index-time and store them in the index</p>
+</li>
+<li>
+<p><a href="https://www.elastic.co/guide/en/elasticsearch/plugins/7.9/mapper-annotated-text.html"><code>mapper-annotated-text</code></a></p>
+<p><code>annotated-text</code> to index text containing special markup (typically used for identifying named entities)</p>
+</li>
+<li>
+<p><a href="percolator.html">Percolator</a></p>
+<p>Accepts queries from the query-dsl</p>
+</li>
+<li>
+<p><a href="parent-join.html">Join</a></p>
+<p>Defines parent/child relation for documents within the same index</p>
+</li>
+<li>
+<p><a href="rank-feature.html">Rank feature</a></p>
+<p>Record numeric feature to boost hits at query time.</p>
+</li>
+<li>
+<p><a href="rank-features.html">Rank features</a></p>
+<p>Record numeric features to boost hits at query time.</p>
+</li>
+<li>
+<p><a href="dense-vector.html">Dense vector</a></p>
+<p>Record dense vectors of float values.</p>
+</li>
+<li>
+<p><a href="sparse-vector.html">Sparse vector</a></p>
+<p>Record sparse vectors of float values.</p>
+</li>
+<li>
+<p><a href="search-as-you-type.html">Search-as-you-type</a></p>
+<p>A text-like field optimized for queries to implement as-you-type completion</p>
+</li>
+<li>
+<p><a href="alias.html">Alias</a></p>
+<p>Defines an alias to an existing field.</p>
+</li>
+<li>
+<p><a href="flattened.html">Flattened</a></p>
+<p>Allows an entire JSON object to be indexed as a single field.</p>
+</li>
+<li>
+<p><a href="histogram.html">Histogram</a></p>
+<p><code>histogram</code> for pre-aggregated numerical values for percentiles aggregations.</p>
+</li>
+<li>
+<p><a href="constant-keyword.html">Constant keyword</a></p>
+<p>Specialization of <code>keyword</code> for the case when all documents have the same value.</p>
+</li>
+</ul>
+<h3 id="arrays">Arrays</h3>
+<p>In Elasticsearch, arrays do not require a dedicated field data type. Any field can contain zero or more values by default, however, all values in the array must be of the same data type. See <a href="array.html">Arrays</a>.</p>
+<h3 id="multi-fields">Multi-fields</h3>
+<p>It is often useful to index the same field in different ways for different purposes. For instance, a <code>string</code> field could be mapped as a <code>text</code> field for full-text search, and as a <code>keyword</code> field for sorting or aggregations. Alternatively, you could index a text field with the <a href="analysis-standard-analyzer.html"><code>standard</code> analyzer</a>, the <a href="analysis-lang-analyzer.html#english-analyzer"><code>english</code></a> analyzer, and the <a href="analysis-lang-analyzer.html#french-analyzer"><code>french</code> analyzer</a>.</p>
+<p>This is the purpose of <em>multi-fields</em>. Most data types support multi-fields via the <a href="multi-fields.html"><code>fields</code></a>parameter.</p>
+<h3 id="dynamic-true-false-strict">&quot;dynamic&quot; : &quot;true&quot; | &quot;false&quot; | &quot;strict&quot;</h3>
+<pre><code>#写入文档，查看 Mapping
+PUT mapping_test/_doc/1
+{
+  &quot;firstName&quot;:&quot;Chan&quot;,
+  &quot;lastName&quot;: &quot;Jackie&quot;,
+  &quot;loginDate&quot;:&quot;2018-07-24T10:29:48.103Z&quot;
+}
+
+#查看 Mapping文件
+GET mapping_test/_mapping
+
+
+#Delete index
+DELETE mapping_test
+
+#dynamic mapping，推断字段的类型
+PUT mapping_test/_doc/1
+{
+    &quot;uid&quot; : &quot;123&quot;,
+    &quot;isVip&quot; : false,
+    &quot;isAdmin&quot;: &quot;true&quot;,
+    &quot;age&quot;:19,
+    &quot;heigh&quot;:180
+}
+
+#查看 Dynamic
+GET mapping_test/_mapping
+
+
+#默认Mapping支持dynamic，写入的文档中加入新的字段
+PUT dynamic_mapping_test/_doc/1
+{
+  &quot;newField&quot;:&quot;someValue&quot;
+}
+
+#该字段可以被搜索，数据也在_source中出现
+POST dynamic_mapping_test/_search
+{
+  &quot;query&quot;:{
+    &quot;match&quot;:{
+      &quot;newField&quot;:&quot;someValue&quot;
+    }
+  }
+}
+
+
+#修改为dynamic false
+PUT dynamic_mapping_test/_mapping
+{
+  &quot;dynamic&quot;: false
+}
+
+#新增 anotherField
+PUT dynamic_mapping_test/_doc/10
+{
+  &quot;anotherField&quot;:&quot;someValue&quot;
+}
+
+
+#该字段不可以被搜索，因为dynamic已经被设置为false
+POST dynamic_mapping_test/_search
+{
+  &quot;query&quot;:{
+    &quot;match&quot;:{
+      &quot;anotherField&quot;:&quot;someValue&quot;
+    }
+  }
+}
+
+get dynamic_mapping_test/_doc/10
+
+#修改为strict
+PUT dynamic_mapping_test/_mapping
+{
+  &quot;dynamic&quot;: &quot;strict&quot;
+}
+
+
+
+#写入数据出错，HTTP Code 400
+PUT dynamic_mapping_test/_doc/12
+{
+  &quot;lastField&quot;:&quot;value&quot;
+}
+
+DELETE dynamic_mapping_test
+</code></pre>
+<p>&quot;copy_to&quot;</p>
+<pre><code>#设置 index 为 false
+DELETE users
+PUT users
+{
+    &quot;mappings&quot; : {
+      &quot;properties&quot; : {
+        &quot;firstName&quot; : {
+          &quot;type&quot; : &quot;text&quot;
+        },
+        &quot;lastName&quot; : {
+          &quot;type&quot; : &quot;text&quot;
+        },
+        &quot;mobile&quot; : {
+          &quot;type&quot; : &quot;text&quot;,
+          &quot;index&quot;: false
+        }
+      }
+    }
+}
+
+PUT users/_doc/1
+{
+  &quot;firstName&quot;:&quot;Ruan&quot;,
+  &quot;lastName&quot;: &quot;Yiming&quot;,
+  &quot;mobile&quot;: &quot;12345678&quot;
+}
+
+POST /users/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;mobile&quot;:&quot;12345678&quot;
+    }
+  }
+}
+
+
+
+
+#设定Null_value
+
+DELETE users
+PUT users
+{
+    &quot;mappings&quot; : {
+      &quot;properties&quot; : {
+        &quot;firstName&quot; : {
+          &quot;type&quot; : &quot;text&quot;
+        },
+        &quot;lastName&quot; : {
+          &quot;type&quot; : &quot;text&quot;
+        },
+        &quot;mobile&quot; : {
+          &quot;type&quot; : &quot;keyword&quot;,
+          &quot;null_value&quot;: &quot;NULL&quot;
+        }
+
+      }
+    }
+}
+
+PUT users/_doc/1
+{
+  &quot;firstName&quot;:&quot;Ruan&quot;,
+  &quot;lastName&quot;: &quot;Yiming&quot;,
+  &quot;mobile&quot;: null
+}
+
+
+PUT users/_doc/2
+{
+  &quot;firstName&quot;:&quot;Ruan2&quot;,
+  &quot;lastName&quot;: &quot;Yiming2&quot;
+
+}
+
+GET users/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+      &quot;mobile&quot;:&quot;NULL&quot;
+    }
+  }
+
+}
+
+
+
+#设置 Copy to
+DELETE users
+PUT users
+{
+  &quot;mappings&quot;: {
+    &quot;properties&quot;: {
+      &quot;firstName&quot;:{
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;copy_to&quot;: &quot;fullName&quot;
+      },
+      &quot;lastName&quot;:{
+        &quot;type&quot;: &quot;text&quot;,
+        &quot;copy_to&quot;: &quot;fullName&quot;
+      }
+    }
+  }
+}
+PUT users/_doc/1
+{
+  &quot;firstName&quot;:&quot;Ruan&quot;,
+  &quot;lastName&quot;: &quot;Yiming&quot;
+}
+
+GET users/_search?q=fullName:(Ruan Yiming)
+
+POST users/_search
+{
+  &quot;query&quot;: {
+    &quot;match&quot;: {
+       &quot;fullName&quot;:{
+        &quot;query&quot;: &quot;Ruan Yiming&quot;,
+        &quot;operator&quot;: &quot;and&quot;
+      }
+    }
+  }
+}
+
+
+#数组类型
+PUT users/_doc/1
+{
+  &quot;name&quot;:&quot;onebird&quot;,
+  &quot;interests&quot;:&quot;reading&quot;
+}
+
+PUT users/_doc/1
+{
+  &quot;name&quot;:&quot;twobirds&quot;,
+  &quot;interests&quot;:[&quot;reading&quot;,&quot;music&quot;]
+}
+
+POST users/_search
+{
+  &quot;query&quot;: {
+		&quot;match_all&quot;: {}
+	}
+}
+
+GET users/_mapping
+</code></pre>
+<p>数组</p>
+<p>多字段特性</p>
+<p>简单提下， 下下次专门讲这块</p>
+<h2 id="analysis-built-in-analyzer">Analysis | Built-in analyzer</h2>
+<p>char filter</p>
+<p>Tokenizer [必须有一个]</p>
+<p>token filter</p>
+<pre><code>html_strip
+mapping
+pattern_replace
+</code></pre>
+<pre><code>PUT my-index-000001
+{
+  &quot;settings&quot;: {
+    &quot;analysis&quot;: {
+      &quot;analyzer&quot;: {
+        &quot;my_custom_analyzer&quot;: {
+          &quot;type&quot;: &quot;custom&quot;, 
+          &quot;tokenizer&quot;: &quot;standard&quot;,
+          &quot;char_filter&quot;: [
+            &quot;html_strip&quot;
+          ],
+          &quot;filter&quot;: [
+            &quot;lowercase&quot;,
+            &quot;asciifolding&quot;
+          ]
+        }
+      }
+    }
+  }
+}
+</code></pre>
+<pre><code>PUT logs/_doc/1
+{&quot;level&quot;:&quot;DEBUG&quot;}
+
+GET /logs/_mapping
+
+POST _analyze
+{
+  &quot;tokenizer&quot;:&quot;keyword&quot;,
+  &quot;char_filter&quot;:[&quot;html_strip&quot;],
+  &quot;text&quot;: &quot;&lt;b&gt;hello world&lt;/b&gt;&quot;
+}
+
+
+POST _analyze
+{
+  &quot;tokenizer&quot;:&quot;path_hierarchy&quot;,
+  &quot;text&quot;:&quot;/user/ymruan/a/b/c/d/e&quot;
+}
+
+
+
+#使用char filter进行替换
+POST _analyze
+{
+  &quot;tokenizer&quot;: &quot;standard&quot;,
+  &quot;char_filter&quot;: [
+      {
+        &quot;type&quot; : &quot;mapping&quot;,
+        &quot;mappings&quot; : [ &quot;- =&gt; _&quot;]
+      }
+    ],
+  &quot;text&quot;: &quot;123-456, I-test! test-990 650-555-1234&quot;
+}
+
+//char filter 替换表情符号
+POST _analyze
+{
+  &quot;tokenizer&quot;: &quot;standard&quot;,
+  &quot;char_filter&quot;: [
+      {
+        &quot;type&quot; : &quot;mapping&quot;,
+        &quot;mappings&quot; : [ &quot;:) =&gt; happy&quot;, &quot;:( =&gt; sad&quot;]
+      }
+    ],
+    &quot;text&quot;: [&quot;I am felling :)&quot;, &quot;Feeling :( today&quot;]
+}
+
+// white space and snowball
+GET _analyze
+{
+  &quot;tokenizer&quot;: &quot;whitespace&quot;,
+  &quot;filter&quot;: [&quot;stop&quot;,&quot;snowball&quot;],
+  &quot;text&quot;: [&quot;The gilrs in China are playing this game!&quot;]
+}
+
+
+// whitespace与stop
+GET _analyze
+{
+  &quot;tokenizer&quot;: &quot;whitespace&quot;,
+  &quot;filter&quot;: [&quot;stop&quot;,&quot;snowball&quot;],
+  &quot;text&quot;: [&quot;The rain in Spain falls mainly on the plain.&quot;]
+}
+
+
+//remove 加入lowercase后，The被当成 stopword删除
+GET _analyze
+{
+  &quot;tokenizer&quot;: &quot;whitespace&quot;,
+  &quot;filter&quot;: [&quot;lowercase&quot;,&quot;stop&quot;,&quot;snowball&quot;],
+  &quot;text&quot;: [&quot;The gilrs in China are playing this game!&quot;]
+}
+
+//正则表达式
+GET _analyze
+{
+  &quot;tokenizer&quot;: &quot;standard&quot;,
+  &quot;char_filter&quot;: [
+      {
+        &quot;type&quot; : &quot;pattern_replace&quot;,
+        &quot;pattern&quot; : &quot;http://(.*)&quot;,
+        &quot;replacement&quot; : &quot;$1&quot;
+      }
+    ],
+    &quot;text&quot; : &quot;http://www.elastic.co&quot;
+}
+</code></pre>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Python资源大全]]></title>
         <id>https://i.plbear.com/post/python-that-is-all-about-python</id>
@@ -2656,13 +3392,5 @@
         </link>
         <updated>2019-07-22T14:35:19.000Z</updated>
         <content type="html"><![CDATA[<div><p>如果你有机会在公司内部做一次Elasticsearch 技术分享，如何才能讲的逼格高，又接地气，那么建议从以下几个方面展开，大家有好的想法，也欢迎文章留言交流。</p><h1>1、可视化展示ELK效果</h1><div class="pgc-img"><img src="http://p3.pstatp.com/large/pgc-image/e6f0b99ab0204c2f89398a825576ea86" img_width="1080" img_height="592" alt="如何高逼格的给同事做 Elasticsearch 技术分享" inline="0"><p class="pgc-img-caption"></p></div><p>如果条件允许，demo的内容是：通过logstash 同步日志或数据库（oracle、mysql）表的数据到 Elasticsearch，然后通过kibana进行可视化。</p><p>1、通过Canvas对数据进行可视化布局与展现，可以实现非常酷炫的大屏展示效果。2、展示实时数据的数据量。3、展示你定的几个维度的数据信息。</p><p>这么切入的目的：很直观，很明显，很接地气。用到ELK技术栈的内容，有带动性，让参与的同事不犯困且很容易让大家对它产生兴趣。</p><h1>2、 Elk stack大家族简介</h1><div class="pgc-img"><img src="http://p1.pstatp.com/large/pgc-image/be95b5a3cb294445bac60559329a2d8f" img_width="1024" img_height="422" alt="如何高逼格的给同事做 Elasticsearch 技术分享" inline="0"><p class="pgc-img-caption"></p></div><p>考虑到不同受众关注点不同。结合业务的数据的特点，从输入、中间处理、存储&amp;检索、分析等全数据流环节展开。</p><p>2.1 输入</p><p>Elastic 支持的输入包含但不限于：</p><p>1、日志类数据：类log4j.log，apache log等，可借助 beats或logstash同步</p><p>2、关系型数据库：mysql oracle pgsql等</p><p>3、非关系型数据库:mongodb redis等</p><p>4、实时数据流：flink spark kafka hdfs等</p><p>5、大数据：hadoop hdfs等</p><p>此处的不同数据的导入，Lostash有丰富的input/output插件，支持N多不同数据源接入，估计同事也会眼前一亮。</p><p>2.2 中间处理ETL</p><p>基础数据很可能是异构的数据，中间的ETL非常重要。logstash filter、elasticsearch ingest 都具备ETL功能。</p><p>2.3 存储&amp;检索</p><p>基于合理的数据建模，在Elastic落地存储，Elastic提供全文检索、数据聚合等。</p><p>2.4 分析</p><p>强调一下，kibana的可视化和监控功能。</p><p>2.5 ELKB认知</p><p>Elastic Stack数据平台由Logstash、Beats、ElasticSearch和Kibana四大核心产品组成，在数据摄取、存储计算分析及数据可视化方面有着无可比拟的优势。</p><p>1、E = Elasticsearch，在存储、计算和分析方面，ElasticSearch允许执行和合并多种类型的搜索，解决不断涌现的各种用例，并具有极高的可用性及容错性，充分保障集群安全。</p><p>2、L = Logstash, Logstash 是开源的服务器端数据处理管道，可同时从多个来源采集、转换数据，并将数据发送到存储库中。</p><p>3、K = Kibana，Kibana作为用户界面的核心，集成了丰富的可视化工具、界面交互开发工具和管理工具，帮助开发人员将数据轻松分享给任何人，甚至还能通过机器学习来监测数据中的隐藏异常并追溯其来源。</p><p>4、B = Beats，Beats作为轻量级的数据搬运工，集合了多种单一用途数据采集器，将数据发送给Logstash或ElasticSearch，其可扩展的框架及丰富的预置采集器将使工作事半功倍。</p><p>以上，主要从大而全的维度，讲解ELK，给大家带来全景认知。</p><p>以这四大核心产品为基础构建的Elastic数据平台实现了数据实时性、相关性及扩展性的完美结合，不仅可以处理各种数据，还能深入挖掘数据的内在关联并迅速呈现，彻底解决企业的大数据实时处理难题。</p><h1>3、 Elasticsearch 是什么？</h1><p>展示的过程中：可以通过kibana的dsl进行展开的讲解。注意例子：可以提前准备好，规划好时间，不用现场敲代码。</p><p>此时可以借助head插件或者kibama-dev讲解。</p><p>3.1 Elasticsearch的组成</p><p>如果是集群部署的更好。讲解内容包括：</p><ul><li class="ql-align-justify">集群、</li><li class="ql-align-justify">索引、</li><li class="ql-align-justify">分片、</li><li class="ql-align-justify">副本、</li><li class="ql-align-justify">分段、</li><li class="ql-align-justify">倒排索引。</li><li class="ql-align-justify">ES的底层是lucene等。</li></ul><div class="pgc-img"><img src="http://p1.pstatp.com/large/pgc-image/423dfe02f753443a8ecba9e0f0a774f1" img_width="755" img_height="459" alt="如何高逼格的给同事做 Elasticsearch 技术分享" inline="0"><p class="pgc-img-caption"></p></div><p>3.2 Elasticsearch分布式可扩展的特性</p><p>强调Elasticsearch可以支持PB级别甚至更高级别数据量的存储。</p><p>3.3 强调Elasticsearch特点</p><p>1、简单的restful api，天生的兼容多语言开发。2、分布式的实时文件存储，每个字段都被索引且可用于搜索。3、分布式的实时分析搜索引擎，海量数据下近实时秒级响应。4、易扩展，处理PB级结构化或非结构化数据。</p><h1>4、 Elasticsearch 能做什么？</h1><p>4.1 全文检索等</p><p>其实也可以类比一下mysql，强调一下：关系型数据库一些检索是做不到的。对比的目的：因为大家都熟悉关系型数据库，这样能够加深理解。</p><p>也可以类比下Google，百度等传统的搜索引擎。告诉同事，其实他们可以做的功能我们都可以做。比如：全文检索，高亮，分页，统计聚合，高级检索等。</p><p>检索的分类：</p><p>1、精确匹配。2、模糊检索。3、正则检索。4、强调全文检索。强调他的快。基于倒排索引实现。5、等等。</p><p>检索类型可以画一个脑图。其实可以，举个例子。演示一下最好。</p><p>4.2 聚合分析</p><p>这里也可以举一下例子。比如:对比一下mycle的group by,limit等功能点讲解。聚合的分类很多，可以抽几个进行讲解。</p><p>4.3 应用场景</p><p>1、记录和日志分析</p><p>2、采集和组合公共数据</p><p>3、全文搜索及个性化推荐</p><p>4、事件数据和指标</p><p>5、数据可视化</p><h1>5、Elasticsearch 极易上手且性能牛逼</h1><p>主流的Java、python、ruby等。C++等也有个人开源维护API。</p><p>可以借助他山之石，把其他公司的应用场景、对应的硬件资源、写入、查询、QPS等性能指标展示出来，凸显牛逼功能和性能。</p><div class="pgc-img"><img src="http://p3.pstatp.com/large/pgc-image/d31ef223121a415188541e227f4de895" img_width="666" img_height="281" alt="如何高逼格的给同事做 Elasticsearch 技术分享" inline="0"><p class="pgc-img-caption"></p></div><h1>6、Elastic 前景光明</h1><p>Elasticsearch在DBRanking 数据库排行榜搜索引擎部分近几年一直处于第一名的领先优势。</p><div class="pgc-img"><img src="http://p9.pstatp.com/large/pgc-image/b41ccbaa0bd14d7d8e8b5141c22fe5be" img_width="913" img_height="468" alt="如何高逼格的给同事做 Elasticsearch 技术分享" inline="0"><p class="pgc-img-caption"></p></div><p>基于Elastic的分布式、可扩展性、良好的性能，BAT、滴滴、美团、小米、华为、携程、360、有赞等几乎所有的主流互联网公司甚至婚庆网站的搜索引擎已经都已经转成ES了。</p><p>那么咱们公司还在犹豫什么呢？</p><h1>7、Elastic技术社区非常活跃</h1><p>这里主要强调，出了问题也不用怕，一个人搞不定，还有国外、国内官方论坛、社区，基本很短时间都能解决问题。</p><p>交流的高效性、问题解决的速度、github迭代更新的速度。以及最近的版本更新的速度:比如7.0的发布，7.0的新特性。大家也会对新的特性充满期待。速度提升快。</p><p>估计讲完这些大家都会跃跃欲试了。</p><h1>8、Elasticsearch 相对薄弱的环节</h1><p>有所为，有所不为。</p><p>8.1 多表关联</p><p>不能简单认为，将mysql同步到Elasticsearch就能解决问题了。</p><p>我们除了看到基于倒排索引Elasticsearch的全文检索的强大，也要看到Elasticsearch对于关系型数据库多表关联的支持相对薄弱，nested类型、Join类型的多表关联操作大数据场景下都会有性能问题。</p><p>8.2 深度分页</p><p>从性能角度考虑，Elasticsearch默认支持10000条数据的返回，除非修改maxresultwindow参数。</p><p>也就是会出现越往后翻页越慢的情况。这点，补救方案：scroll+scroll_after实现。</p><p>但是，更长远角度，建议：参考Google、百度的深度分页实现。</p><p>8.3 实时性</p><p>Elasticsearch是近实时的系统，不是准实时。受限于：refresh_inteval设置，有最快1s延时。</p><p>准实时要求高的场景，建议选型注意。</p><h1>9 小结</h1><p>ELK远不止文章中提到的这些内容，可以说，以上列举的只是<strong>冰山一角</strong>的点，N多底层原理（索引分片原理、写入原理、检索原理、倒排索引原理、高可靠性原理、大数据实战场景等）都没有提及或展开。</p></div>]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[架构成长之路：分布式秒杀系统之如何防止单个用户重复秒杀下单？]]></title>
-        <id>https://i.plbear.com/post/jia-gou-cheng-chang-zhi-lu-fen-bu-shi-miao-sha-xi-tong-zhi-ru-he-fang-zhi-dan-ge-yong-hu-chong-fu-miao-sha-xia-dan</id>
-        <link href="https://i.plbear.com/post/jia-gou-cheng-chang-zhi-lu-fen-bu-shi-miao-sha-xi-tong-zhi-ru-he-fang-zhi-dan-ge-yong-hu-chong-fu-miao-sha-xia-dan">
-        </link>
-        <updated>2019-07-20T17:23:25.000Z</updated>
-        <content type="html"><![CDATA[<div class="article-content"><div><p>电子交易的一个很基本的问题，就是避免用户下重复订单。用户明明想买一次，结果一看下了两个单。如果没有及时发现，就会带来额外的物流成本和扯皮。对商家的信誉也不好看。</p><p>从技术上看，这是一个分布式一致性问题；但实际上，技术无法100%解决这类问题，得结合多种手段综合处理。这里就来说道说道。</p><h1>为啥会下重了呢？</h1><p><strong>原因1：客户端bug</strong></p><p>比如下单的按键在点按之后，在没有收到服务器请求之前，按键的状态没有设为<strong>已禁用</strong>状态，还可以被按。又或者，在触摸屏下，用户手指的点按可能被手机操作系统识别为多次点击。</p><p>嗯，谁能保证客户端不偶尔出个什么bug 呢。</p><p><strong>原因2: 超时</strong></p><p>用户的设备与服务器之间可能是不稳定的网路。这样一个下单请求过去，返回不一定回得来。超时最大的问题是: 从用户的角度，他无法确定下单的请求是还没到服务器，还是已经到了服务器但是返回丢失了。——<strong>用户无法区分到底这个单下了还是没下</strong>。</p><p>这样在等待一个超时后，UI可能会提示用户下单超时，请重复再试。</p><div class="pgc-img"><img src="http://p1.pstatp.com/large/pgc-image/a3c09c7618b447d1b0a265c1620bd23c" img_width="1000" img_height="244" alt="架构成长之路：分布式秒杀系统之如何防止单个用户重复秒杀下单？" inline="0"><p class="pgc-img-caption"></p></div><p><strong>原因3: 用户的App闪退/人工强退，之后重新打开重新下单</strong></p><p>也许可以使用一些技术手段避免用户下重单，但是心急的用户可能会重启流程/重启App/重启手机。在这种强制的手段下，任何技术手段都会失效——用户压根就不让你的技术执行，你怎么玩？</p><p><strong>在这些条件下，如何避免用户多下了一笔订单呢？</strong></p><h1>用幂等防止重复订单</h1><p>在技术方面，这是一个分布式一致性的问题，即客户端和服务器端对某个订单是否成功/失败达成一致。防止重单的关键是<strong>使用一个由客户端生成的，可用于避免重复的key</strong>，俗称<strong>dedup key</strong>（deduplicate key之意）。这个key可以用任意可以保证全局唯一性的方式生成，比如uuid。客户端和服务器需要使用这个dedup key作为串联条件，一起解决去重问题。</p><h1>客户端的流程</h1><p>客户端需要实现这样一个下单界面。用户点击【确认下单】时，应该产生一个独一无二的dedup key，连定订单数据发送给服务器端。在服务器返回之前，该界面应该一直等待，直到服务器响应成功/失败或者超时发生（比如15秒后，收不到服务器响应）。如果超时发生，应该向用户提示是否重试下单或者退出该界面。当用户点击【重试】时，应该用刚刚生成的dedup key来再次发送下单请求——如果用户一直不退出这个流程，每次用户点击重试，都应该用这个dedup key来重试下单，直到服务器正常返回，或者用户放弃返回。</p><div class="pgc-img"><img src="http://p1.pstatp.com/large/pgc-image/3659880202454777a9d7a649a524456f" img_width="1000" img_height="528" alt="架构成长之路：分布式秒杀系统之如何防止单个用户重复秒杀下单？" inline="0"><p class="pgc-img-caption">下单的客户端流程</p></div><h1>后端数据表设计</h1><p>后端在订单数据表中，需要增加dedup_key这列，并设置<strong>唯一约束</strong>。</p><pre>create table order(<br> # ...<br> dedup_key varchar(60) not null comment 'key to pretend order duplication',<br> # ...<br> unique uniq_dedup_key(dedup_key)<br>);<br></pre><h1>下单的实现</h1><p>在实现下单逻辑时，基于该dedup_key实现一个"create-or-get"语义的下单接口——简单说就是</p><blockquote><p>如果带有指定dedup_key的订单已经存在，则直接返回；否则，用该dedup_key下单。</p></blockquote><p>用伪代码表示大概是：</p><pre>@Transactional<br>Order createOrder(Integer userId, String prodCode, Decimal amount, String dedupKey) {<br> try {<br> String orderId = createOrder(userId, prodCode, amount, deupKey); // insert a new order<br> Order order = getOrderById(orderId); // read order from db<br> order.setDuplicated(false);<br> return order;<br> } catch(UniqueKeyViolationException e) {<br> // if duplicated order has existed<br> Order order = getOrderByDedupKey(dedupKey);<br> order.setDuplicated(true);<br> return order;<br> } catch (Exception e) {<br> // hanlde other errors and rollback transaction ...<br> }<br>}<br></pre><p>这时，这段下单代码总是能返回一个订单（除非发生一些DB挂了之类的错误），要么是新创建的，要么就是一个已经存在的单。注意，<strong>最好在订单里增加一个属性（比如例子中用“duplicated”）来表示这个订单是这次新生成的，还是因为幂等而直接返回的</strong>。这样前端可以有针对性的对这两种情况提示不同的文案。</p><h1>技术搞定幂等就足够了吗？</h1><p>上面的流程没有考虑一种情况，就是用户中途强制退出客户端，或者直接点击【返回】回到产品页，重新走下单流程。这个时候客户端就无法判断用户到底是想重新下单，还是想第二次下单。此时，可以从产品设计上考虑一下。</p><p>比如，在客户端缓存一个表，记录所有没有确认结果的订单。</p><p> 产品代码 产品数量 金额 dedup key 未确认订单1 AAA 1 1000 xxx-yyy-zzz 未确认订单2 BBB 2 500.00 Aaa-bbb-ccc ... 通过这个表，我们可以<strong>猜</strong>一下用户的意图。比如，如果用户重新提交了一笔订单，其产品代码、金额与表中记录的某条完全一致，就可以提示一下用户:</p><div class="pgc-img"><img src="http://p1.pstatp.com/large/pgc-image/f1df5062d20e4def95ab2fc7d456d4d4" img_width="676" img_height="274" alt="架构成长之路：分布式秒杀系统之如何防止单个用户重复秒杀下单？" inline="0"><p class="pgc-img-caption">提示一下用户是不是下重了</p></div><p>如果用户想重试，可以继续用表中对应记录的dedup key重新发起下单。</p><p>这样不是绝对准确的，仅仅是尽量的减少用户误操作的可能性。当然，在产品设计上可以能出于用户交互简化，不一定真的会这样做。这就需要其他机制来配合，比如“通知”。</p><h1>通知</h1><p>一旦服务器下单成功，可以通过某种通知机制（如APNS、Websocket）主动将订单推送至客户端，强行让客户端重新拉取最新的订单信息，并配合“未确认订单”表，以通知Badge/弹框等方式提示用户刚刚一笔状态未知的订单成功/失败了。</p><p>另外一种手段就是，服务器端实时扫描用户的下单数据，一旦发现可能的重单，就立刻通知客服<strong>主动</strong>联系用户，及时处理问题。</p><h1>如果还拦不住……</h1><p>经过层层阻拦，可能还是会有用户误操作，直到收到两份商品才发现下重了。此时就得依靠运营/客服的支持了。提供用户申诉的手段，让用户提出哪些订单是重复的，并且由销售系统店家、商品提供者和买家三方共同根据用户操作的记录来协商如何处理。我们需要让技术帮助让这种人工处理的几率尽量小。因为每次处理都会耗费较大的人工成本，和一些运营费用（比如赔款、小礼品等等）。</p><h1>这么麻烦，有必要吗？</h1><p>这要分业务场景，对于很多电商来讲可能不是必要的。因为从用户下单到订单被审核处理进入到发货阶段需要一定的时间（可能是半小时～1小时），并且一定是支付成功后才会开始进行下一步流程。在这个时间段，用户大概率能从网络错误中恢复过来，自行区分是否下重了。配合客服主动提示，会极大的降低出问题的概率。</p><p>但是对于理财服务来说，这种去重就非常必要了。因为</p><ul><li><strong>“下单+支付”</strong>。用户购买理财往往是“下单+支付”一起执行，不可以单独下单/单独支付</li><li><strong>用户的入金可能很大</strong>。例如数万，数十万</li><li><strong>准确性丢失</strong>。如果一旦下重了，有可能影响用户的投资资金配置的准确性。</li><li><strong>撤销难</strong>。部分理财产品存在下单不可撤销的问题；或者即便撤销，资金也无法立刻回款。等到回款，可能这个购入机会就错过去了。例如对于基金交易，错过1个交易日，价格就会发生变动。</li></ul><p>基于这些特性，在理财产品中，就要竭尽全力的去重。</p><h1>结论</h1><p>以上所讲是处理重复订单问题的一般方法。你可以注意到，无论多么好的技术，也不可能100%的拦截所有的可能性，必须依靠<strong>技术+产品设计+运营支持</strong>的综合手段才能解决这类问题。</p><p>另外，本文还没涉及到关于订单支付（支付也可能重复哦）带来的进一步的复杂性，也没有讨论在高并发情况下的性能优化，仅仅讨论下单本身的问题。所以可以想象一下现实中的交易业务比这里的说的要复杂得多。</p><p>本文介绍的原理也不仅仅适用于防止下重复订单，而是可以应用到任何<strong>需要“创建一个不应该重复资源”</strong>的场景，比如“向用户发一条通知”，“触发一次不能重复的批处理任务！</p></div></div>]]></content>
     </entry>
 </feed>
